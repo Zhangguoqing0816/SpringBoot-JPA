@@ -22,8 +22,20 @@ spring:
     #redis超时时间（毫秒），如果不设置，取默认值2000
     timeout: 6000
     database: 15
+  rabbitmq:
+    host: 122.112.201.113
+
+    username: admin
+    password: admin
+    virtual-host: /
+    port: 5672
+  # servlet 上传
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 server:
-  port: 8901
+  port: 8902
 
 
 
