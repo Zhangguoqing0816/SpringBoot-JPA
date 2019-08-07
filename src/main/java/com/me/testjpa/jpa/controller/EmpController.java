@@ -1,6 +1,7 @@
 package com.me.testjpa.jpa.controller;
 
 import com.me.testjpa.jpa.entity.Employee;
+import com.me.testjpa.jpa.model.RequestModel;
 import com.me.testjpa.jpa.service.EmpService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -71,6 +72,24 @@ public class EmpController {
     @RequestMapping(value="/queryById2/{id}")
     public Employee getAccountById2(@PathVariable("id") String id){
         return empService.selectById2(id);
+    }
+
+    @ApiOperation(value = "查询所有的employee--selectAllQ",notes = "查询所有的employee")
+    @RequestMapping(value = "/selectAllQ")
+    public List<RequestModel> selectAllQ(){
+        return empService.selectAllQ();
+    }
+
+    @ApiOperation(value = "查询所有的employee--selectAllQ2",notes = "查询所有的employee")
+    @RequestMapping(value = "/selectAllQ2/{rId}/{rName}")
+    public List<RequestModel> selectAllQ2(@PathVariable("rId") String rId, @PathVariable("rName")String rName){
+        return empService.selectAllQ2(rId, rName);
+    }
+
+    @ApiOperation(value = "查询所有的employee--selectAllQ3",notes = "查询所有的employee")
+    @RequestMapping(value = "/selectAllQ3/{rId}/{rName}")
+    public List<RequestModel> selectAllQ3(@PathVariable("rId") String rId, @PathVariable("rName")String rName){
+        return empService.selectAllQ3(rId, rName);
     }
 
 }

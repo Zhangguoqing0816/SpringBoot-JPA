@@ -2,6 +2,7 @@ package com.me.testjpa.jpa.service;
 
 import com.me.testjpa.jpa.entity.Employee;
 import com.me.testjpa.jpa.model.RedisModel;
+import com.me.testjpa.jpa.model.RequestModel;
 import com.me.testjpa.jpa.repository.EmpRepository;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.slf4j.Logger;
@@ -94,6 +95,21 @@ public class EmpService {
         Employee emp = empRepository.findById(id).orElseThrow(()->new RuntimeException("没有此人"));
         System.out.println("selectById2查数据库了，redis里面没有");
         return emp;
+    };
+
+    public List<RequestModel> selectAllQ(){
+        List<RequestModel> list = empRepository.queryDIY();
+        return list;
+    };
+
+    public List<RequestModel> selectAllQ2(String rId,String rName){
+        List<RequestModel> list = empRepository.queryDIY2(rId,rName);
+        return list;
+    };
+
+    public List<RequestModel> selectAllQ3(String rId,String rName){
+        List<RequestModel> list = empRepository.queryDIY2(rId,rName);
+        return list;
     };
 
 }
