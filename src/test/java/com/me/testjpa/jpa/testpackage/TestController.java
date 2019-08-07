@@ -1,14 +1,11 @@
-package com.me.testjpa.jpa.controller;
+package com.me.testjpa.jpa.testpackage;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.testjpa.jpa.entity.Employee;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class TestController {
 
@@ -26,13 +23,5 @@ public class TestController {
             e.printStackTrace();
         }
 
-    }
-
-    public static void main(String[] args){
-        List<String> list = new ArrayList<String>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.forEach(obj-> System.out.println(obj));
     }
 }
