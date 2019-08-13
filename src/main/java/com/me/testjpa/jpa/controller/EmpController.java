@@ -92,4 +92,10 @@ public class EmpController {
         return empService.selectAllQ3(rId, rName);
     }
 
+    @PostMapping("/exportemp")
+    @ApiOperation(value = "导出Emp", notes = "导出Emp")
+    public void exportFile(){
+
+    }
+
 }
