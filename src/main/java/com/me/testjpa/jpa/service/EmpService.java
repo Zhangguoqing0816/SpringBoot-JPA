@@ -32,8 +32,8 @@ public class EmpService {
     @Autowired
     private RedisTemplate<String, RedisModel> redisTemplate = new RedisTemplate<String, RedisModel>();
 
-    @Value("${file.filepath}")
-    private String filePath;
+    //@Value("${file.filepath}")
+    //private String filePath;
 
     public List<Employee> selectAll(){
         List<Employee> empList = empRepository.findAll();
@@ -149,8 +149,8 @@ public class EmpService {
             rowMap.put("makeTime", "操作时间");
             data.add(rowMap);
         });
-
-        CSVUtils.createCSVFile(data, headMap, filePath, requestModel.getFileName() !=null ? requestModel.getFileName() : "Download");
+        String filePath = System.getProperty("java.io.tmpdir") + File.separator;
+        empFile = CSVUtils.createCSVFile(data, headMap, filePath, requestModel.getFileName() !=null ? requestModel.getFileName() : "Download");
 
         return empFile;
     }
