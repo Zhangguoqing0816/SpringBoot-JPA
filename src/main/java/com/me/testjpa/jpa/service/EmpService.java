@@ -4,22 +4,22 @@ import com.me.testjpa.jpa.entity.Employee;
 import com.me.testjpa.jpa.model.RedisModel;
 import com.me.testjpa.jpa.model.RequestModel;
 import com.me.testjpa.jpa.repository.EmpRepository;
+import com.me.testjpa.jpa.util.CSVUtils;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -31,6 +31,9 @@ public class EmpService {
 
     @Autowired
     private RedisTemplate<String, RedisModel> redisTemplate = new RedisTemplate<String, RedisModel>();
+
+    @Value("${file.filepath}")
+    private String filePath;
 
     public List<Employee> selectAll(){
         List<Employee> empList = empRepository.findAll();
@@ -116,8 +119,38 @@ public class EmpService {
         return list;
     };
 
-    public File exportEmp(){
+    /**
+     * 导出数据
+     * @return
+     */
+    public File exportEmp(RequestModel requestModel){
         File empFile = null;
+
+        //表头
+        LinkedHashMap<String, Object> headMap = new LinkedHashMap<String, Object>();
+        headMap.put("id", "主键");
+        headMap.put("empNo", "员工编号");
+        headMap.put("empName", "姓名");
+        headMap.put("empSex", "性别");
+        headMap.put("sal", "工资");
+        headMap.put("makeTime", "操作时间");
+
+        //导出的数据
+        List<Map<String, String>> data = new ArrayList<>();
+        List<Employee> all = empRepository.findAll(new Sort(Sort.Direction.DESC, "makeTime"));
+        all.stream().forEach(employee -> {
+            //一行数据
+            LinkedHashMap<String, String> rowMap = new LinkedHashMap<String, String>();
+            rowMap.put("id", "主键");
+            rowMap.put("empNo", "员工编号");
+            rowMap.put("empName", "姓名");
+            rowMap.put("empSex", "性别");
+            rowMap.put("sal", "工资");
+            rowMap.put("makeTime", "操作时间");
+            data.add(rowMap);
+        });
+
+        CSVUtils.createCSVFile(data, headMap, filePath, requestModel.getFileName() !=null ? requestModel.getFileName() : "Download");
 
         return empFile;
     }

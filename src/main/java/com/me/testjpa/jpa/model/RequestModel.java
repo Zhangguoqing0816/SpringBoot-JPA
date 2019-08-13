@@ -19,6 +19,8 @@ public class RequestModel {
 
     private Date rTime;
 
+    private String fileName;
+
     public RequestModel() {
     }
 

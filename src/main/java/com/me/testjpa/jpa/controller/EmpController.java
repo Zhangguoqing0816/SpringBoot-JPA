@@ -3,6 +3,7 @@ package com.me.testjpa.jpa.controller;
 import com.me.testjpa.jpa.entity.Employee;
 import com.me.testjpa.jpa.model.RequestModel;
 import com.me.testjpa.jpa.service.EmpService;
+import com.me.testjpa.jpa.util.FileUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -94,8 +97,10 @@ public class EmpController {
 
     @PostMapping("/exportemp")
     @ApiOperation(value = "导出Emp", notes = "导出Emp")
-    public void exportFile(){
-
+    public void exportFile(HttpServletResponse response, @RequestBody RequestModel requestModel){
+        File file = empService.exportEmp(requestModel);
+        FileUtil.download(response, file);
+        file.delete();
     }
 
 }

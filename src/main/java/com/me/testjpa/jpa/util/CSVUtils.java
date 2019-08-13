@@ -50,13 +50,13 @@ public class CSVUtils {
     /**
      * 模板的创建
      *
-     * @param exportData
-     * @param headMap
-     * @param outPutPath
-     * @param fileName
-     * @return
+     * @param exportData 数据List<Map<String, String>>
+     * @param headMap 表头 LinkedHashMap
+     * @param outPutPath 输出路径
+     * @param fileName 文件名称
+     * @return File，文件创建完之后下载需要用
      */
-    public static File createCSVFile(List exportData, LinkedHashMap headMap,
+    public static File createCSVFile(List<Map<String, String>> exportData, LinkedHashMap headMap,
                                      String outPutPath, String fileName) {
         File csvFile = null;
         BufferedWriter csvFileOutputStream = null;
