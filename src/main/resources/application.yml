@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/testzhang?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
-    username: root
-    password: root
+    url: jdbc:mysql://192.168.3.156:3306/heq_db?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
+    username: heq
+    password: 123456
   jpa:
     database: mysql
     show-sql: true
