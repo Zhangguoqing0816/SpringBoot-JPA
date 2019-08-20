@@ -141,12 +141,12 @@ public class EmpService {
         all.stream().forEach(employee -> {
             //一行数据
             LinkedHashMap<String, String> rowMap = new LinkedHashMap<String, String>();
-            rowMap.put("id", "主键");
-            rowMap.put("empNo", "员工编号");
-            rowMap.put("empName", "姓名");
-            rowMap.put("empSex", "性别");
-            rowMap.put("sal", "工资");
-            rowMap.put("makeTime", "操作时间");
+            rowMap.put("id", employee.getId());
+            rowMap.put("empNo", employee.getEmpNo());
+            rowMap.put("empName", employee.getEmpName());
+            rowMap.put("empSex", employee.getEmpSex());
+            rowMap.put("sal", employee.getSal());
+            rowMap.put("makeTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(employee.getMakeTime()));
             data.add(rowMap);
         });
         String filePath = System.getProperty("java.io.tmpdir") + File.separator;

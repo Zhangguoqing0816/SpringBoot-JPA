@@ -44,4 +44,10 @@ public class Employee extends BaseEntity {
                 ", makeTime=" + makeTime +
                 '}';
     }
+
+    public Employee(String empNo, String empName, String sal) {
+        this.empNo = empNo;
+        this.empName = empName;
+        this.sal = sal;
+    }
 }

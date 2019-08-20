@@ -80,7 +80,8 @@ public class FileUtil {
      */
     public static void download(HttpServletResponse response,
                                 File file){
-        response.setCharacterEncoding("GBK");
+        //response.setCharacterEncoding("GBK");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("multipart/form-data");
         response.setHeader("Content-Disposition", "attachment;fileName=" + file.getName());
         ServletOutputStream out;

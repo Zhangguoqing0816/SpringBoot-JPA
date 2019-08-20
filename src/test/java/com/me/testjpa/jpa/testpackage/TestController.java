@@ -3,12 +3,15 @@ package com.me.testjpa.jpa.testpackage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.testjpa.jpa.entity.Employee;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class TestController {
 
     public static void main2(String[] args) {
@@ -26,12 +29,22 @@ public class TestController {
         }
     }
 
+    public static void test01(){
+        List<Integer> integers = Arrays.asList(9, 5, 6, 87, 1);
+        Collections.sort(integers);
+        System.out.println(integers);
+        Collections.reverse(integers);
+        System.out.println(integers);
+
+    }
+
     public static void main(String[] args){
-        List<String> list = new ArrayList<String>();
+       /* List<String> list = new ArrayList<String>();
         list.add("A");
         list.add("B");
         list.add("C");
-        list.forEach(obj-> System.out.println(obj));
+        list.forEach(obj-> System.out.println(obj));*/
+        test01();
     }
 
 }

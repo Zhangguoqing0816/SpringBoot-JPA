@@ -69,8 +69,8 @@ public class CSVUtils {
             String path = outPutPath.concat(fileName).concat(".csv");
             csvFile = new File(path);
             // UTF-8使正确读取分隔符","
-            csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(csvFile), "GBK"), 1024);
+            //csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFile), "GBK"), 1024);
+            csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFile), "UTF-8"), 1024);
             // 写入文件头部
             for (Iterator propertyIterator = headMap.entrySet().iterator(); propertyIterator
                     .hasNext(); ) {

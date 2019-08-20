@@ -1,8 +1,12 @@
+server:
+  port: 8902
 spring:
+  application:
+    name: mySpringBoot-JPA
   datasource:
-    url: jdbc:mysql://192.168.3.156:3306/heq_db?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
-    username: heq
-    password: 123456
+    url: jdbc:mysql://localhost:3306/testzhang?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
+    username: root
+    password: root
   jpa:
     database: mysql
     show-sql: true
@@ -34,8 +38,11 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-server:
-  port: 8902
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
 
 file:
   filepath: C:/Users/user/Downloads/
