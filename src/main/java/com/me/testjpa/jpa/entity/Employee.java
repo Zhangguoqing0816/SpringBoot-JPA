@@ -24,6 +24,8 @@ public class Employee extends BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date makeTime;
 
+    private Double x;
+
     private Status status;
 
     public Employee(String empNo, String empName, String empSex, String sal, Date makeTime) {
@@ -96,6 +98,13 @@ public class Employee extends BaseEntity {
         this.empName = empName;
         this.sal = sal;
         this.status = status;
+    }
+    public Employee(String empNo, String empName, String sal, Status status, Double x) {
+        this.empNo = empNo;
+        this.empName = empName;
+        this.sal = sal;
+        this.status = status;
+        this.x = x;
     }
 
     public enum  Status{

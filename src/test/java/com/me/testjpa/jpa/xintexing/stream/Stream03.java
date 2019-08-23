@@ -1,11 +1,9 @@
 package com.me.testjpa.jpa.xintexing.stream;
 
 import com.me.testjpa.jpa.entity.Employee;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -28,11 +26,11 @@ import java.util.stream.Collectors;
  */
 public class Stream03 {
     static List<Employee> employeesList = Arrays.asList(
-            new Employee("张三", "18", "9999", Employee.Status.FREE),
-            new Employee("李四", "38", "6666", Employee.Status.BUSY),
-            new Employee("王五", "6", "3333", Employee.Status.VOCATION),
-            new Employee("赵六", "55", "7777", Employee.Status.FREE),
-            new Employee("赵六", "55", "7777", Employee.Status.FREE)
+            new Employee("张三", "18", "9999", Employee.Status.FREE, 1040.0),
+            new Employee("李四", "38", "6666", Employee.Status.BUSY, 2222.0),
+            new Employee("王五", "6", "3333", Employee.Status.VOCATION, 7777.0),
+            new Employee("赵六", "55", "7777", Employee.Status.FREE, 1543.0),
+            new Employee("赵六", "56", "7777", Employee.Status.FREE, 5555.0)
     );
 
     //终止操作
@@ -102,8 +100,7 @@ public class Stream03 {
                 .collect(Collectors.toCollection(HashSet::new))  // 想要其他类型就用这个
                 .forEach(System.out::println);
     }
-
-    //操作
+    // collect 操作
     public static void test04(){
         // 总数
         Long collect = employeesList.stream()
@@ -126,11 +123,63 @@ public class Stream03 {
                 .collect(Collectors.minBy((e1, e2) -> Integer.compare(Integer.valueOf(e1.getSal()), Integer.valueOf(e2.getSal()))));
         System.out.println(collect4.get());
     }
+    // collect 分组
+    public static void test05(){
+        //分组
+        Map<Employee.Status, List<Employee>> collect = employeesList.stream()
+                .collect(Collectors.groupingBy((emp) -> emp.getStatus()));
+        System.out.println(collect);
+        //多级分组
+        Map<Employee.Status, Map<String, List<Employee>>> collect1 = employeesList.stream()
+                .collect(Collectors.groupingBy(emp -> emp.getStatus(), Collectors.groupingBy(emp -> {
+                    if (Integer.valueOf(emp.getEmpName()) > 35) {
+                        return "青年";
+                    } else if (Integer.valueOf(emp.getEmpName()) < 35) {
+                        return "小孩";
+                    } else {
+                        return "老年";
+                    }
+                })));
+        System.out.println(collect1);
+    }
+
+    // collect 分区
+    public static void test06() {
+        Map<Boolean, List<Employee>> map = employeesList.stream()
+                .collect(Collectors.partitioningBy(emp -> Integer.valueOf(emp.getSal()) > 7000));
+        System.out.println(map);
+    }
+
+    public static void test07() {
+        Double collect =
+                employeesList.stream()
+                .collect(Collectors.summingDouble(Employee::getX));
+        System.out.println(collect);
+
+        DoubleSummaryStatistics dss = employeesList.stream()
+                .mapToDouble(Employee::getX).summaryStatistics();
+        System.out.println(dss.getMax());//最大值
+        System.out.println(dss.getAverage());//平均值
+        System.out.println(dss.getCount());//总个数
+        System.out.println(dss.getMin());//最小值
+        System.out.println(dss.getSum());//总和
+    }
+
+    public static void test08() {
+        String s = employeesList.stream()
+                .map(Employee::getEmpNo)
+                .collect(Collectors.joining(",", "===", "==="));
+        System.out.println(s);
+    }
 
     public static void main(String[] args){
 //        test01();
 //        test02();
 //        test03();
-        test04();
+//        test04();
+//        test05();
+//        test06();
+//        test07();
+        test08();
     }
 }

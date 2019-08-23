@@ -127,6 +127,13 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13-beta-3</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

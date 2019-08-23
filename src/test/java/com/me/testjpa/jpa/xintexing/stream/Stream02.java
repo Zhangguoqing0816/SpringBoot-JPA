@@ -37,7 +37,7 @@ public class Stream02 {
             new Employee("赵六", "55", "7777")
     );
 
-    //内部迭代
+    // filter 内部迭代
     public static void test01(){
         //中间操作： 不会执行任何擦欧总
         employeesList.stream()
