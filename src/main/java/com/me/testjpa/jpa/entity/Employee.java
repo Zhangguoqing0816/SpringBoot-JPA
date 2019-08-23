@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 // @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @Entity
@@ -23,6 +24,8 @@ public class Employee extends BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date makeTime;
 
+    private Status status;
+
     public Employee(String empNo, String empName, String empSex, String sal, Date makeTime) {
         this.empNo = empNo;
         this.empName = empName;
@@ -31,7 +34,43 @@ public class Employee extends BaseEntity {
         this.makeTime = makeTime;
     }
 
+    public Employee(String empNo, String empName, String empSex, String sal, Date makeTime, Status status) {
+        this.empNo = empNo;
+        this.empName = empName;
+        this.empSex = empSex;
+        this.sal = sal;
+        this.makeTime = makeTime;
+        this.status = status;
+    }
+
     public Employee() {
+    }
+
+    public Employee(String empNo) {
+        this.empNo = empNo;
+    }
+
+    public Employee(String empNo, String empName) {
+        this.empNo = empNo;
+        this.empName = empName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(empNo, employee.empNo) &&
+                Objects.equals(empName, employee.empName) &&
+                Objects.equals(empSex, employee.empSex) &&
+                Objects.equals(sal, employee.sal) &&
+                Objects.equals(makeTime, employee.makeTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), empNo, empName, empSex, sal, makeTime);
     }
 
     @Override
@@ -42,6 +81,7 @@ public class Employee extends BaseEntity {
                 ", empSex='" + empSex + '\'' +
                 ", sal='" + sal + '\'' +
                 ", makeTime=" + makeTime +
+                ", status=" + status +
                 '}';
     }
 
@@ -49,5 +89,18 @@ public class Employee extends BaseEntity {
         this.empNo = empNo;
         this.empName = empName;
         this.sal = sal;
+    }
+
+    public Employee(String empNo, String empName, String sal, Status status) {
+        this.empNo = empNo;
+        this.empName = empName;
+        this.sal = sal;
+        this.status = status;
+    }
+
+    public enum  Status{
+        FREE, //空闲的
+        BUSY, //忙碌
+        VOCATION; //休假
     }
 }

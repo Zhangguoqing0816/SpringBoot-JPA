@@ -1,12 +1,10 @@
-package com.me.testjpa.jpa.xintexing;
+package com.me.testjpa.jpa.xintexing.yufa;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.function.Consumer;
 
 /**
- *  Lambda 语法
+ *  Lambda 基础语法
  *  无参无返回值  test01
  *  一个参数无返回值 test02
  *  有两个以上的参数 并且有返回值，并且 Lambda 体中有多条语句 test03
@@ -47,7 +45,7 @@ public class TestLambda2 {
     public static void test03(){
         //比较两个 Integer 的大小
         Comparator<Integer> comparator = (x, y) -> {
-            System.out.println("");
+            System.out.println("132");
             return Integer.compare(x, y);
         };
     }
@@ -62,13 +60,21 @@ public class TestLambda2 {
     }
 
     public static void test05(){
-        List<Integer> list = new ArrayList<>();
+        System.out.println(operation(10, x -> x * x));
+        System.out.println(operation(20, y -> y + 20));
     }
+
+    public static Integer operation(Integer num, MyFun mf){
+        return mf.getValue(num);
+    }
+
+
 
     public static void main(String[] args) {
 //        test01();
 //        test02();
 //        test03();
 //        test04();
+        test05();
     }
 }

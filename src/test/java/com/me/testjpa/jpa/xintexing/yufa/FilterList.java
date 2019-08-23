@@ -1,4 +1,4 @@
-package com.me.testjpa.jpa.xintexing;
+package com.me.testjpa.jpa.xintexing.yufa;
 
 import com.me.testjpa.jpa.entity.Employee;
 

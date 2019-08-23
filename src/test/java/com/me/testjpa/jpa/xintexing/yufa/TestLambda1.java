@@ -1,10 +1,6 @@
-package com.me.testjpa.jpa.xintexing;
+package com.me.testjpa.jpa.xintexing.yufa;
 
 import com.me.testjpa.jpa.entity.Employee;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
@@ -13,7 +9,7 @@ import java.util.*;
  */
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-public class Demo01 {
+public class TestLambda1 {
 
     public static void main(String[] args) {
 //        test1();

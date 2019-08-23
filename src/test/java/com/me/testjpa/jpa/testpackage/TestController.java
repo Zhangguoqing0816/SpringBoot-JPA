@@ -38,13 +38,38 @@ public class TestController {
 
     }
 
+    public static void test02(){
+        List list = new ArrayList();
+        list.add("132");
+        List list2 = new ArrayList();
+        list2.add("789");
+        list2.add("897");
+        list2.add("987");
+        list.add(list2);
+        System.out.println(list);
+
+        System.out.println("<------------------------------------------>");
+
+        List list3 = new ArrayList();
+        list3.add("132");
+        List list4 = new ArrayList();
+        list4.add("789");
+        list4.add("897");
+        list4.add("987");
+        list3.addAll(list4);
+        System.out.println(list3);
+    }
+
     public static void main(String[] args){
        /* List<String> list = new ArrayList<String>();
         list.add("A");
         list.add("B");
         list.add("C");
         list.forEach(obj-> System.out.println(obj));*/
-        test01();
+
+//        test01();
+
+        test02();
     }
 
 }
