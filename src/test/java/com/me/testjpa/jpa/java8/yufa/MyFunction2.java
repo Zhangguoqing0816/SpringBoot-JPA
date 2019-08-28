@@ -1,4 +1,4 @@
-package com.me.testjpa.jpa.xintexing.yufa;
+package com.me.testjpa.jpa.java8.yufa;
 
 public interface MyFunction2<T, R> {
 

@@ -1,7 +1,6 @@
-package com.me.testjpa.jpa.xintexing.stream;
+package com.me.testjpa.jpa.java8.stream;
 
 import com.me.testjpa.jpa.entity.Employee;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.*;
 import java.util.stream.Collectors;

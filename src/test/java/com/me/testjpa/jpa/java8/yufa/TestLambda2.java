@@ -1,4 +1,4 @@
-package com.me.testjpa.jpa.xintexing.yufa;
+package com.me.testjpa.jpa.java8.yufa;
 
 import java.util.Comparator;
 import java.util.function.Consumer;

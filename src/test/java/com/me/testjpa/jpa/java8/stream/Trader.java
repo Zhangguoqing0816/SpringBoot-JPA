@@ -1,4 +1,4 @@
-package com.me.testjpa.jpa.xintexing.stream;
+package com.me.testjpa.jpa.java8.stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

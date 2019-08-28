@@ -1,4 +1,4 @@
-package com.me.testjpa.jpa.xintexing.ForkJoin;/**
+package com.me.testjpa.jpa.java8.ForkJoin;/**
  * Created by Administrator on 2019/8/25.
  */
 
