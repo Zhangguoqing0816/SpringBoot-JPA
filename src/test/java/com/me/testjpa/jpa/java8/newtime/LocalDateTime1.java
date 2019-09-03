@@ -13,6 +13,7 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * 人读的
@@ -28,6 +29,8 @@ import java.util.Locale;
  * TemporalAdjuster :时间矫正器
  *
  * DateTimeFormatter 格式化时间/日期
+ *
+ * ZonedDate ZonedTime ZonedDateTime
  */
 
 public class LocalDateTime1 {
@@ -150,8 +153,24 @@ public class LocalDateTime1 {
         LocalDateTime parse = ldt1.parse(format1, dtf2);
         System.out.println(parse);
 
-        TemporalAccessor parse1 = dtf2.parse(format2);
+        LocalDateTime parse1 = LocalDateTime.parse(format2, dtf2);
         System.out.println(parse1);
+    }
+
+    @Test
+    public void test7(){
+        Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();//获取时区
+        System.out.println(availableZoneIds);
+    }
+
+    @Test
+    public void test8() {
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/Tallinn"));
+        System.out.println(now);
+        LocalDateTime now2 = LocalDateTime.now(ZoneId.of("Europe/Tallinn"));
+        ZonedDateTime zonedDateTime = now2.atZone(ZoneId.of("Asia/Shanghai"));
+        System.out.println(zonedDateTime);
+
     }
 
 
@@ -159,6 +178,7 @@ public class LocalDateTime1 {
     public static void main(String[] args) throws ScriptException {
        /* LocalDateTime now = LocalDateTime.now();
         System.out.println(now);*/
+
 
       /*  System.out.println(true && (false || true));
 
