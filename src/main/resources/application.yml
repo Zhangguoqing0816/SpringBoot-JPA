@@ -44,5 +44,11 @@ spring:
       enabled: true
       force: true
 
+elaticjob:
+  zookeeper:
+    server-lists: 127.0.0.1:2181
+    namespace: myjpa-job3
+
 file:
   filepath: C:/Users/user/Downloads/
+

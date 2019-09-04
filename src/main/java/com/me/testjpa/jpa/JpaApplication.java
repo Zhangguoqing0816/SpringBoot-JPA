@@ -1,5 +1,9 @@
 package com.me.testjpa.jpa;
 
+import com.dangdang.ddframe.job.api.JobType;
+import com.dangdang.ddframe.job.api.simple.SimpleJob;
+import com.me.testjpa.jpa.job.JobConfig;
+import com.me.testjpa.jpa.job.MyJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -38,6 +42,12 @@ public class JpaApplication {
                 InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"),
                 env.getProperty("server.port")
                 );
+
+        //"SimpleJob","0/5 * * * * ?",10,SimpleJob.class, JobType.SIMPLE
+        /*JobConfig a = new JobConfig();
+        a.zhang("myjob1","0/5 * * * * ?",10, MyJob.class, JobType.SIMPLE);
+        a.zhang("myjob2","0/5 * * * * ?",10, MyJob.class, JobType.SIMPLE);*/
+        System.out.println("启动完毕----");
     }
 
 /**
