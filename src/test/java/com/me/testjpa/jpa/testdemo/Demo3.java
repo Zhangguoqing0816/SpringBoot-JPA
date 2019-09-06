@@ -5,9 +5,16 @@ import com.me.testjpa.jpa.util.FileUtil;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Bean;
+import org.springframework.util.Assert;
 
-import java.io.File;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,4 +78,41 @@ public class Demo3 {
     public void b1(User u1,User u2){
         BeanUtils.copyProperties(u1, u2);
     }
+
+
+    @Test
+    public void test5() {
+        //获取文件创建时间
+        String filePath = "C:\\Users\\zn\\Desktop\\常用工具\\113.txt";
+        File file = new File(filePath);
+
+        //获取最后一次修改时间 start
+        Long ss = file.lastModified();
+        System.out.println(ss);
+        Date date = new Date(ss);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = sdf.format(date.getTime());
+        System.out.println(format);
+    //获取最后一次修改时间 end
+
+        String createTime = "";
+        try {
+            Process exec = Runtime.getRuntime().exec("cmd /c dir " + filePath + "/tc");
+            InputStream inputStream = exec.getInputStream();
+            BufferedReader  br = new BufferedReader(new InputStreamReader(inputStream, "GBK"));
+            String line;
+            while ((line = br.readLine()) != null){
+                if(line.endsWith(".txt")){
+                    createTime = line.substring(0, 17);
+                    break;
+                }
+                System.out.println(123+"----"+line);
+            }
+            System.out.println(createTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
