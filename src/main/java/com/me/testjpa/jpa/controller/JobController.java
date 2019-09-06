@@ -21,8 +21,20 @@ public class JobController {
 
     @RequestMapping("/createJob")
     public String createJob(){
-        //jobConfig.initJob("myjob1","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE);
-        jobConfig.initJob("myjob2","0 22 15 3 9 2019",2, MyJob.class, JobType.SIMPLE);
+        jobConfig.initJob("myjob1","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE);
+//        jobConfig.initJob("myjob2","0 22 15 3 9 ? 2019",2, MyJob.class, JobType.SIMPLE);
+        return "ok";
+    }
+
+    @RequestMapping("/stopJob")
+    public String stopJob() throws InterruptedException {
+        jobConfig.stopJob("myjob1","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE);
+        return "ok";
+    }
+
+    @RequestMapping("/notifyJob")
+    public String notifyJob() throws InterruptedException {
+        jobConfig.notifyJob("myjob1","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE);
         return "ok";
     }
 }

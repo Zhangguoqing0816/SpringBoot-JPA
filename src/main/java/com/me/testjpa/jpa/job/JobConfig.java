@@ -37,12 +37,8 @@ public class JobConfig /*implements CommandLineRunner*/ {
      * @param type 任务类型
      */
     public void initJob(String JobName, String cron, int shardingCount, Class c, JobType type){
-        /*addJob(createJob("myjob1","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE));
-        addJob(createJob("myjob2","0/5 * * * * ?",2, MyJob.class, JobType.SIMPLE));*/
-
         System.out.println("JobConfig----start");
-        LiteJobConfiguration job = createJob(JobName, cron, shardingCount, c, type);
-        addJob(job);
+        createJob(JobName, cron, shardingCount, c, type);
         System.out.println("JobConfig----end");
     }
 
@@ -55,24 +51,46 @@ public class JobConfig /*implements CommandLineRunner*/ {
      * @param type 任务类型
      * @return
      */
-    public LiteJobConfiguration createJob(String JobName, String cron, int shardingCount, Class c, JobType type){
+    public void createJob(String JobName, String cron, int shardingCount, Class c, JobType type){
         //初始化配置
-        JobCoreConfiguration jobCoreConfiguration = JobCoreConfiguration.newBuilder(JobName, cron, shardingCount).build();
-        JobTypeConfiguration jobTypeConfiguration = new SimpleJobConfiguration(jobCoreConfiguration, c.getCanonicalName());
-        if(type.compareTo(JobType.DATAFLOW) == 0){
-            jobTypeConfiguration = new DataflowJobConfiguration(jobCoreConfiguration, c.getCanonicalName(), true);
-        }
-        return LiteJobConfiguration.newBuilder(jobTypeConfiguration).build();
-    }
-
-    public void addJob(LiteJobConfiguration liteJobConfiguration){
-        JobScheduler jobScheduler = new JobScheduler(zookeeperRegistryCenter, liteJobConfiguration);
+        JobScheduler jobScheduler = getJobScheduler(JobName, cron, shardingCount, c, type);
         jobScheduler.init();
     }
 
-    /*@Override
-    public void run(String... args) throws Exception {
-        System.out.println("任务初始化。。。");
-        initJob();
-    }*/
+    public void stopJob(String JobName, String cron, int shardingCount, Class c, JobType type) {
+        //初始化配置
+        JobScheduler jobScheduler = getJobScheduler(JobName, cron, shardingCount, c, type);
+        try {
+            jobScheduler.wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void notifyJob(String JobName, String cron, int shardingCount, Class c, JobType type){
+        //初始化配置
+        JobScheduler jobScheduler = getJobScheduler(JobName, cron, shardingCount, c, type);
+        jobScheduler.notify();
+    }
+
+    /**
+     * 生成一个任务 Job
+     * @param JobName
+     * @param cron
+     * @param shardingCount
+     * @param c
+     * @param type
+     * @return
+     */
+    private JobScheduler getJobScheduler(String JobName, String cron, int shardingCount, Class c, JobType type) {
+        JobCoreConfiguration jobCoreConfiguration = JobCoreConfiguration.newBuilder(JobName, cron, shardingCount).build();
+        JobTypeConfiguration jobTypeConfiguration = new SimpleJobConfiguration(jobCoreConfiguration, c.getCanonicalName());
+        if (type.compareTo(JobType.DATAFLOW) == 0) {
+            jobTypeConfiguration = new DataflowJobConfiguration(jobCoreConfiguration, c.getCanonicalName(), true);
+        }
+        LiteJobConfiguration build = LiteJobConfiguration.newBuilder(jobTypeConfiguration).build();
+        return new JobScheduler(zookeeperRegistryCenter, build);
+    }
+
+
 }

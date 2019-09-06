@@ -3,6 +3,7 @@ package com.me.testjpa.jpa.testdemo;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Test01 {
     }
 
     @Test
-    public void test() {
+    public void test1() {
         List<String> list1 = Arrays.asList("1", "2", "3");
         List<String> list2 = Arrays.asList("4", "5", "6");
         List<Stream<String>> collect = Stream.of(list1, list2).map(Collection::stream).collect(Collectors.toList());
@@ -32,5 +33,14 @@ public class Test01 {
         /*并集*/
         List<String> unionList = Stream.of(list1, list2).flatMap(Collection::stream).distinct().collect(Collectors.toList());
         System.out.println(unionList);
+    }
+
+    @Test
+    public void test() {
+        String path = "H:" + File.separator + "guoqingProject" + File.separator + "aiqas-server" + File.separator + "aiqas-server";
+        System.out.println(path);
+        File file = new File(path);
+        boolean exists = file.exists();
+        System.out.println(exists);
     }
 }

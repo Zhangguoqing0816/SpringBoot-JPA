@@ -7,6 +7,7 @@ import org.apache.commons.io.LineIterator;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 public class FileUtil {
 
@@ -80,8 +81,7 @@ public class FileUtil {
      */
     public static void download(HttpServletResponse response,
                                 File file){
-        //response.setCharacterEncoding("GBK");
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("GBK");
         response.setContentType("multipart/form-data");
         response.setHeader("Content-Disposition", "attachment;fileName=" + file.getName());
         ServletOutputStream out;
@@ -101,4 +101,58 @@ public class FileUtil {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证文件路径是否存在
+     * @param path
+     * @return
+     */
+    public static boolean checkPath(String path){
+        File file = new File(path);
+        if(!file.exists()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 获取文件
+     * @param filePath
+     * @return
+     */
+    public static File getFile(String filePath){
+        File file = new File(filePath);
+        if(checkPath(filePath)){
+            if(!file.isDirectory()){
+                System.out.println(file.getName());
+                return file;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取路径中的所有文件
+     *
+     * @param path
+     * @param urls
+     */
+    public static void getFile(String path, List<String> urls) {
+        // File对象 可以是文件或者目录
+        File file = new File(path);
+        if (file.isDirectory()) {
+            File[] array = file.listFiles();
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].isFile()) {
+                    System.out.println("*****" + array[i].getPath());
+                    urls.add(array[i].getPath());
+                } else if (array[i].isDirectory()) {
+                    getFile(array[i].getPath(), urls);
+                }
+            }
+        } else {
+            urls.add(path);
+        }
+    }
+
 }
