@@ -12,6 +12,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+    open-in-view: true
   thymeleaf:
     mode: HTML5
     encoding: UTF-8
