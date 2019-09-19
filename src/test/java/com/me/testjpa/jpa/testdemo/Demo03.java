@@ -4,15 +4,12 @@ import com.me.testjpa.jpa.entity.User;
 import com.me.testjpa.jpa.util.FileUtil;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
-import org.springframework.util.Assert;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +19,7 @@ import java.util.List;
  * @Author: ZhangGQ
  * @Date: 2019/9/6 10:18
  */
-public class Demo3 {
+public class Demo03 {
 
     @Test
     public void test1() {
