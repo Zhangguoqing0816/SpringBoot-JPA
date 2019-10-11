@@ -6,10 +6,8 @@ import com.me.testjpa.jpa.entity.StudentEntity;
 import com.me.testjpa.jpa.repository.StudentEntityRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sun.org.apache.xml.internal.security.Init;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
