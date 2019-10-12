@@ -19,4 +19,6 @@ public interface EmpRepository extends JpaRepository<Employee, String> {
 
     @Query(value = "select new com.me.testjpa.jpa.model.RequestModel(e.id, e.empNo, e.empName, e.makeTime) from Employee e where e.id =:id and e.empName=:empName")
     public List<RequestModel> queryDIY3(@Param("rId") String id, @Param("rName")String empName);
+
+
 }

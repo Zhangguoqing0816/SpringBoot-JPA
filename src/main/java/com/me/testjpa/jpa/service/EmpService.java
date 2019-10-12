@@ -5,13 +5,9 @@ import com.me.testjpa.jpa.model.RedisModel;
 import com.me.testjpa.jpa.model.RequestModel;
 import com.me.testjpa.jpa.repository.EmpRepository;
 import com.me.testjpa.jpa.util.CSVUtils;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -155,4 +151,27 @@ public class EmpService {
         return empFile;
     }
 
+    public static void main(String[] args) {
+        Set<String> set1 = new HashSet<>();
+        set1.add("1");
+        set1.add("2");
+        set1.add("3");
+        set1.add("4");
+        Set<String> set2 = new HashSet<>();
+        set2.add("4");
+        set2.add("5");
+        set2.add("6");
+        Iterator<String> iterator = set1.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        System.out.println("<<------------------------------------->>");
+        set1.removeAll(set2);
+
+        Iterator<String> iterator1 = set1.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
+
+    }
 }
