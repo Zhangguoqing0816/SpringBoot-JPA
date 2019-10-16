@@ -2,19 +2,33 @@ package com.me.testjpa.jpa.java8.newtime;
 
 import org.junit.Test;
 
-/**
- * 时间新特性
- */
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+/**
+ * 时间新特性
+ */
 
 public class Time1 {
+
+    public static void main(String[] args) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        Date date = new Date();
+        Instant instant = date.toInstant();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        String format = localDateTime.format(dateTimeFormatter);
+        System.out.println(format);
+    }
 
     @Test
     public void test1() throws Exception{
