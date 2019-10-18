@@ -1,31 +1,23 @@
 package com.me.testjpa.jpa.job;
 
 import com.dangdang.ddframe.job.api.JobType;
-import com.dangdang.ddframe.job.api.simple.SimpleJob;
 import com.dangdang.ddframe.job.config.JobCoreConfiguration;
 import com.dangdang.ddframe.job.config.JobTypeConfiguration;
 import com.dangdang.ddframe.job.config.dataflow.DataflowJobConfiguration;
 import com.dangdang.ddframe.job.config.simple.SimpleJobConfiguration;
 import com.dangdang.ddframe.job.lite.api.JobScheduler;
 import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
-import com.dangdang.ddframe.job.reg.base.CoordinatorRegistryCenter;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description: 增加定时任务的工具类
  * @Author: ZhangGQ
  * @Date: 2019/9/3 10:37
  */
-@Configuration
-/*@Component
-@RequiredArgsConstructor*/
-public class JobConfig /*implements CommandLineRunner*/ {
+@Service
+public class JobConfig {
     @Autowired
     private ZookeeperRegistryCenter zookeeperRegistryCenter;
 
