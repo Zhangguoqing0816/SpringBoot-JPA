@@ -25,7 +25,7 @@ public class Test01 {
     public void test1() {
         List<String> list1 = Arrays.asList("1", "2", "3");
         List<String> list2 = Arrays.asList("4", "5", "6");
-        List<Stream<String>> collect = Stream.of(list1, list2).map(Collection::stream).collect(Collectors.toList());
+            List<Stream<String>> collect = Stream.of(list1, list2).map(Collection::stream).collect(Collectors.toList());
         System.out.println(collect);
         /*交集*/
         List<String> unionAllList = Stream.of(list1, list2).flatMap(Collection::stream).collect(Collectors.toList());
