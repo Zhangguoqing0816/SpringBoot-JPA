@@ -140,9 +140,20 @@
         </dependency>
 
         <!-- elasticJob -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.kuhn-he</groupId>
             <artifactId>elastic-job-lite-spring-boot-starter</artifactId>
+            <version>2.1.5</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-core</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-spring</artifactId>
             <version>2.1.5</version>
         </dependency>
 
@@ -151,6 +162,20 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.7</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.dangdang/elastic-job-lite-lifecycle -->
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-lifecycle</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.aggregate</groupId>
+                    <artifactId>jetty-all-server</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>2.1.5</version>
+        </dependency>
+
 
         <!-- web-->
         <dependency>
